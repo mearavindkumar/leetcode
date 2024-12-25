@@ -34,4 +34,13 @@ public class BSTIterator {
 		result.add(root.val);
 		inOrderTraversal(root.right, result);
 	}
+
+	static void inOrderTraversal(TreeNode root) {
+		if (root == null) {
+			return;
+		}
+		inOrderTraversal(root.left);
+		System.out.print(root.val + "->");
+		inOrderTraversal(root.right);
+	}
 }
