@@ -10,25 +10,43 @@ public class Dec25 {
 	TreeNode current;
 	TreeNode result1;
 
-	public boolean isUnivalTree(TreeNode root) {
-//		if (root == null) {
-//			return false;
-//		}
-//		if (root.left == null && root.right == null) {
-//			return true;
-//		}
-//		if (root.left == null) {
-//			return root.val == root.right.val;
-//		}
-//		if (root.right == null) {
-//			return root.val == root.left.val;
-//		}
-//		boolean isValid = root.val == root.left.val && root.val == root.right.val;
-//		return isValid && isUnivalTree(root.left) && isUnivalTree(root.right);
+	public int minDiffInBST(TreeNode root) {
+		minDiffInBSTDFS(root);
+		return ans;
 
-//		if(root.left == null) {
-//			
-//		}
+	}
+
+	private int ans = Integer.MAX_VALUE;
+	private Integer pred = null;
+
+	public void minDiffInBSTDFS(TreeNode root) {
+		if (root == null) {
+			return;
+		}
+		minDiffInBSTDFS(root.left);
+		if (pred != null) {
+			ans = Math.min(ans, root.val - pred);
+		}
+
+		pred = root.val;
+		minDiffInBSTDFS(root.right);
+
+	}
+
+//	 private void inorder(TreeNode root) 
+//	  {
+//	    if (root == null)
+//	      return;
+//
+//	    inorder(root.left);
+//	    if (pred != null)
+//	      ans = Math.min(ans, root.val - pred);
+//	    pred = root.val;
+//	    inorder(root.right);
+//	  }
+
+	public boolean isUnivalTree(TreeNode root) {
+
 
 		return isUnivalTree(root, root.val);
 
